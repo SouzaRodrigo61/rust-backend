@@ -1,6 +1,15 @@
 {
   "environment": "production",
-
+  
+  "database": {  
+    "uri": "mongodb://mongo:FoLV1q9SkFeBcf79zTWa@containers-us-west-189.railway.app:6745",
+    "name": "imaculada"
+  },
+  
+  "auth": {
+    "secret": "secret"
+  },
+  
   "logger": {
     "level": "info"
   }
