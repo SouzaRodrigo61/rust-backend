@@ -41,6 +41,13 @@ impl Settings {
   pub fn new() -> Result<Self, ConfigError> {
     let run_mode = env::var("RUN_MODE").unwrap_or_else(|_| "development".into());
 
+    let port = std::env::var("PORT").unwrap_or("8080".to_string());
+
+    println!("Loading config for {} environment", &run_mode);
+    println!("PORT: {}", &env::var("PORT").unwrap_or_else(|_| "3000".into()));
+
+    println!("PORT other form: {}", &port);
+
     let mut builder = Config::builder()
       .add_source(File::with_name("config/default"))
       .add_source(File::with_name(&format!("config/{run_mode}")).required(false))

@@ -197,6 +197,8 @@ pub trait ModelExt {
 
   async fn sync_indexes() -> Result<(), Error> {
     let connection = CONNECTION.get().await;
+    println!("Syncing indexes for {}", Self::T::COLLECTION_NAME);
+    
     Self::T::sync(connection).await.map_err(Error::Wither)
   }
 }
