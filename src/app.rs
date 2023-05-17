@@ -16,6 +16,8 @@ pub async fn create_app() -> Router {
     .await
     .expect("Failed to sync database indexes");
 
+  println!("Creating app...");
+
   Router::new()
     .merge(routes::status::create_route())
     .merge(routes::user::create_route())
@@ -45,4 +47,5 @@ pub async fn create_app() -> Router {
     // CORS configuration. This should probably be more restrictive in
     // production.
     .layer(CorsLayer::permissive())
+
 }

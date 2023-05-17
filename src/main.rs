@@ -1,5 +1,4 @@
 use std::net::SocketAddr;
-use tracing::info;
 
 mod app;
 mod database;
@@ -26,9 +25,9 @@ async fn main() {
   let app = app::create_app().await;
 
   let port = SETTINGS.server.port;
-  let address = SocketAddr::from(([127, 0, 0, 1], port));
+  let address = SocketAddr::from(([0, 0, 0, 0], port));
 
-  info!("Server listening on {}", &address);
+  println!("Server listening on {}", &address);
   axum::Server::bind(&address)
     .serve(app.into_make_service())
     .await
