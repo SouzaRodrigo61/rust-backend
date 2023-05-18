@@ -45,5 +45,4 @@ pub async fn create_app() -> Router {
     // CORS configuration. This should probably be more restrictive in
     // production.
     .layer(CorsLayer::permissive())
-
 }

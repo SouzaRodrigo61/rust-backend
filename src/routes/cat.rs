@@ -63,7 +63,6 @@ async fn query_cats(
     .pagination(pagination.count(count).build())
     .build();
 
-  debug!("Returning cats");
   Ok(res)
 }
 

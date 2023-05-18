@@ -1,8 +1,8 @@
 use config::{Config, ConfigError, Environment, File};
+use dotenv::dotenv;
 use lazy_static::lazy_static;
 use serde::Deserialize;
 use std::{env, fmt};
-use dotenv::dotenv;
 
 lazy_static! {
   pub static ref SETTINGS: Settings = Settings::new().expect("Failed to setup settings");
@@ -49,6 +49,9 @@ impl Settings {
       .add_source(File::with_name(&format!("config/{run_mode}")).required(false))
       .add_source(File::with_name("config/local").required(false))
       .add_source(Environment::default().separator("__"));
+
+    println!("Loading settings for run_mode: {}", run_mode);
+    println!("Settings: {:?}", builder);
 
     // Some cloud services like Heroku exposes a randomly assigned port in
     // the PORT env var and there is no way to change the env var name.

@@ -13,8 +13,9 @@ lazy_static! {
 
     info!("Connecting to MongoDB...");
 
-    let client_options =
-    ClientOptions::parse(db_uri).await.expect("Failed to parse MongoDB connection string");
+    let client_options = ClientOptions::parse(db_uri)
+      .await
+      .expect("Failed to parse MongoDB connection string");
 
     info!("Connected to MongoDB...");
 

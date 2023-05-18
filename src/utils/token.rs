@@ -2,6 +2,7 @@ use bson::oid::ObjectId;
 use jsonwebtoken::{errors::Error, DecodingKey, EncodingKey, Header, TokenData, Validation};
 use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
+use tracing::debug;
 
 use crate::models::user::User;
 
@@ -47,6 +48,7 @@ impl Claims {
 pub fn create(user: User, secret: &str) -> Result<String, Error> {
   let encoding_key = EncodingKey::from_secret(secret.as_ref());
   let claims = Claims::new(user);
+  debug!("claims {:?}", claims);
 
   jsonwebtoken::encode(&HEADER, &claims, &encoding_key)
 }
