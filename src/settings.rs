@@ -2,6 +2,7 @@ use config::{Config, ConfigError, Environment, File};
 use lazy_static::lazy_static;
 use serde::Deserialize;
 use std::{env, fmt};
+use dotenv::dotenv;
 
 lazy_static! {
   pub static ref SETTINGS: Settings = Settings::new().expect("Failed to setup settings");
@@ -39,14 +40,9 @@ pub struct Settings {
 
 impl Settings {
   pub fn new() -> Result<Self, ConfigError> {
+    dotenv().ok();
+
     let run_mode = env::var("RUN_MODE").unwrap_or_else(|_| "development".into());
-
-    let port = std::env::var("PORT").unwrap_or("8080".to_string());
-
-    println!("Loading config for {} environment", &run_mode);
-    println!("PORT: {}", &env::var("PORT").unwrap_or_else(|_| "3000".into()));
-
-    println!("PORT other form: {}", &port);
 
     let mut builder = Config::builder()
       .add_source(File::with_name("config/default"))

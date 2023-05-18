@@ -1,6 +1,7 @@
 use async_trait::async_trait;
 use futures::stream::TryStreamExt;
 use serde::{de::DeserializeOwned, ser::Serialize};
+use tracing::info;
 use validator::Validate;
 use wither::bson::doc;
 use wither::bson::from_bson;
@@ -197,8 +198,8 @@ pub trait ModelExt {
 
   async fn sync_indexes() -> Result<(), Error> {
     let connection = CONNECTION.get().await;
-    println!("Syncing indexes for {}", Self::T::COLLECTION_NAME);
-    
+    info!("Syncing indexes for {}", Self::T::COLLECTION_NAME);
+
     Self::T::sync(connection).await.map_err(Error::Wither)
   }
 }

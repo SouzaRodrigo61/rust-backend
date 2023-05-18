@@ -19,6 +19,7 @@ mod tests;
 
 use errors::Error;
 use settings::SETTINGS;
+use tracing::info;
 
 #[tokio::main]
 async fn main() {
@@ -27,7 +28,7 @@ async fn main() {
   let port = SETTINGS.server.port;
   let address = SocketAddr::from(([0, 0, 0, 0], port));
 
-  println!("Server listening on {}", &address);
+  info!("Server listening on {}", &address);
   axum::Server::bind(&address)
     .serve(app.into_make_service())
     .await

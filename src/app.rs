@@ -16,8 +16,6 @@ pub async fn create_app() -> Router {
     .await
     .expect("Failed to sync database indexes");
 
-  println!("Creating app...");
-
   Router::new()
     .merge(routes::status::create_route())
     .merge(routes::user::create_route())
