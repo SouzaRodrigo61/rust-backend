@@ -8,9 +8,5 @@
   
   "auth": {
     "secret": "secret"
-  },
-  
-  "logger": {
-    "level": "info"
   }
 }

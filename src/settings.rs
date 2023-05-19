@@ -50,9 +50,6 @@ impl Settings {
       .add_source(File::with_name("config/local").required(false))
       .add_source(Environment::default().separator("__"));
 
-    println!("Loading settings for run_mode: {}", run_mode);
-    println!("Settings: {:?}", builder);
-
     // Some cloud services like Heroku exposes a randomly assigned port in
     // the PORT env var and there is no way to change the env var name.
     if let Ok(port) = env::var("PORT") {

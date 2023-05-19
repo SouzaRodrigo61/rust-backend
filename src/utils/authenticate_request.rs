@@ -5,6 +5,7 @@ use axum::{
   http::request::Parts,
   RequestPartsExt,
 };
+use tracing::info;
 
 use crate::errors::AuthenticateError;
 use crate::errors::Error;
@@ -28,6 +29,9 @@ where
     let secret = SETTINGS.auth.secret.as_str();
     let token_data =
       token::decode(bearer.token(), secret).map_err(|_| AuthenticateError::InvalidToken)?;
+
+    info!("Token data: {:?}", token_data.claims.user);
+    info!("Token data: {:?}", token_data.claims.exp);
 
     Ok(token_data.claims.user)
   }
