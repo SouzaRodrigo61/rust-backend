@@ -1,11 +1,11 @@
 use std::env;
 
-use tracing::info;
+use tracing::debug;
 
 use crate::settings::SETTINGS;
 
 pub fn setup() {
-  info!("Setting up logger");
+  debug!("Setting up logger");
 
   if env::var_os("RUST_LOG").is_none() {
     let level = SETTINGS.logger.level.as_str();
