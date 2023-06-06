@@ -6,7 +6,7 @@
   },
   
   "database": {  
-    "uri": "mongodb://mongo:FoLV1q9SkFeBcf79zTWa@containers-us-west-189.railway.app:6745",
+    "uri": "mongodb+srv://souzarodrigo61:w5bAUQIQ2SIVSOaU@imaculada.sa3rthr.mongodb.net/?retryWrites=true&w=majority",
     "name": "imaculada"
   },
   
